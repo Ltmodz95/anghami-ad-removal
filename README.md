@@ -1,8 +1,8 @@
 ## Anghami ads Remover
 
 ### Description:
-A chrome extension to remove the popup ads that keeps appearing in their website.
-
+Enjoy Anghami now without ads for FREE!
+A chrome extension to remove advertisments that keeps playing on the website while listening to your music, and I know how lazy a programmer is so i made the play button pressed automatically.
 ### Installation
  1. clone the project or download it
  2. open extensions on google chrome
