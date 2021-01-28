@@ -4,14 +4,11 @@ let autoPlay = true;
 const callback = function(mutationsList) {
     for(const mutation of mutationsList) {
         if (mutation.type === 'childList') {
-            googleIframesRemover('google');//removing google frames
+            googleIframesRemover();//removing google frames
             adsContainerRemover(); //removing the ads container
             adsModalBackDropRemover(); // removing the backdrop of the modal to make the app interactive again
             adsModalWindowRemover(); // removing the main ads container
-            
-            setTimeout(()=>{
-                pressPlay();  // press the play button again cause am too lazy to press it again.
-            },300)
+            pressPlay();  // press the play button again cause am too lazy to press it again.
            
         }
 
@@ -24,8 +21,8 @@ observer.observe(targetToObserve, config);
 
 //helper functions
 
-const googleIframesRemover = (name) =>{
-    const googleIframes = Array.prototype.filter.call(document.querySelectorAll("iframe"),x=>x.name.includes(name))
+const googleIframesRemover = () =>{
+    const googleIframes = Array.prototype.filter.call(document.querySelectorAll("iframe"),x=>x.name.includes('google'))
     removeItems(googleIframes,"removed google iframe")
 }
 
@@ -52,7 +49,11 @@ const pressPlay = ()=>{
     if(playButton && playButton.querySelector(".play") && autoPlay)
     {
         playButton.click();
-        autoPlay = !autoPlay;        
+        if(playButton.querySelector(".pause"))
+        {
+            autoPlay = !autoPlay;
+        }
+       
     }
 }
 
