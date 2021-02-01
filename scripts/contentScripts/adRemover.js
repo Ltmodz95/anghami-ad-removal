@@ -9,9 +9,10 @@ const callback = function (mutationsList) {
     for (const mutation of mutationsList) {
         if (mutation.type === 'childList') {
             googleIframesRemover();
+            removeAdContainers();
             pressPlay();
             muteVideoAds();
-            hideAdModals();
+
         }
     }
 };
@@ -27,9 +28,15 @@ const googleIframesRemover = () => {
     removeItems(googleIframes, "removed google iframe")
 }
 const muteVideoAds = () => {
-    const videoAds = document.querySelectorAll("video");
-    removeItems(videoAds);
-    setTimeout(pressPlay, 1000);
+    for(const videoAd of document.querySelectorAll("#native-ad-video"))
+    {
+        videoAd.onplay = (e)=>{
+            console.log("played",e);
+            e.target.muted = true;
+            hideAdModals();
+            pressPlay()
+        }
+    }
 }
 const hideAdModals = () => {
     const adModals = document.querySelectorAll("ngb-modal-window");
@@ -42,7 +49,9 @@ const pressPlay = () => {
     if (playButton && playButton.querySelector(".play")) {
         playButton.click();
     }
+
 }
+const removeAdContainers = () => removeItems(document.querySelectorAll("anghami-ads"));
 const removeItems = (items) => {
     for (const item of items) {
         item.parentNode.removeChild(item);
