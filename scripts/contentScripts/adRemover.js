@@ -41,6 +41,7 @@ const muteVideoAds = () => {
 const hideAdModals = () => {
     const adModals = document.querySelectorAll("ngb-modal-window");
     const adModalsBackDrop = document.querySelectorAll("ngb-modal-backdrop");
+    document.body.className = document.body.className.replace("modal-open","");
     hideItems([...adModals, ...adModalsBackDrop]);
     console.log("removed an ad");
 }
